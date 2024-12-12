@@ -28,24 +28,23 @@ func main() {
 	// Initialize Mixpanel client
 	mp := mixpanel.NewApiClient(token)
 
-	// Create an event
-	event := &mixpanel.Event{
-		Name: "people_event",
+	// Create and track the first event (Sign Up)
+	signupEvent := &mixpanel.Event{
+		Name: "Sign Up",
 		Properties: map[string]interface{}{
-			"token":    token, // Pass the token in the properties
-			"$user_id": "12345",
-			"action":   "logged_in",
+			"token":       token, // Pass the token in the properties
+			"Signup Type": "Referral",
+			"$user_id":    "USER_ID",
 		},
 	}
 
-	// Track the event
-	if err := mp.Track(ctx, []*mixpanel.Event{event}); err != nil {
-		log.Fatalf("Error tracking event: %v", err)
+	if err := mp.Track(ctx, []*mixpanel.Event{signupEvent}); err != nil {
+		log.Fatalf("Error tracking Sign Up event: %v", err)
 	}
 
 	// Set People Properties
 	peopleProperties := &mixpanel.PeopleProperties{
-		DistinctID: "12345", // Unique identifier for the user
+		DistinctID: "USER_ID", // Unique identifier for the user
 		Properties: map[string]interface{}{
 			"$name":  "Jane Doe",
 			"$email": "jane.doe@example.com",
@@ -58,5 +57,19 @@ func main() {
 		log.Fatalf("Error setting People properties: %v", err)
 	}
 
-	fmt.Println("Event and People properties successfully tracked!")
+	// Create and track another event
+	loginEvent := &mixpanel.Event{
+		Name: "Logged In",
+		Properties: map[string]interface{}{
+			"token":    token, // Pass the token in the properties
+			"$user_id": "USER_ID",
+			"action":   "Button Click",
+		},
+	}
+
+	if err := mp.Track(ctx, []*mixpanel.Event{loginEvent}); err != nil {
+		log.Fatalf("Error tracking Logged In event: %v", err)
+	}
+
+	fmt.Println("All events and People properties successfully tracked!")
 }
