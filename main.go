@@ -28,16 +28,21 @@ func main() {
 	// Initialize Mixpanel client
 	mp := mixpanel.NewApiClient(token)
 
+
+// hodor - groww - event 1
+	
 	// Create and track the first event (Sign Up)
 	signupEvent := &mixpanel.Event{
 		Name: "Sign Up",
 		Properties: map[string]interface{}{
 			"token":       token, // Pass the token in the properties
-			"Signup Type": "Referral",
 			"$user_id":    "USER_ID",
+			
+			// events properties to be added
+			
+			"Signup Type": "Referral",
 		},
 	}
-
 	if err := mp.Track(ctx, []*mixpanel.Event{signupEvent}); err != nil {
 		log.Fatalf("Error tracking Sign Up event: %v", err)
 	}
@@ -57,6 +62,8 @@ func main() {
 		log.Fatalf("Error setting People properties: %v", err)
 	}
 
+// hodor - groww - event 2
+	
 	// Create and track another event
 	loginEvent := &mixpanel.Event{
 		Name: "Logged In",
