@@ -19,6 +19,7 @@ Two main API's
 1. Import/Track Events (update the user activity)
 
 https://{region}.mixpanel.com/import
+
 https://{region}.mixpanel.com/track
 
 2. Update the user profile
