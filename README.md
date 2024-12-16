@@ -17,10 +17,12 @@ India Residency Server: api-in.mixpanel.com
 Two main API's
 
 1. Import/Track Events (update the user activity)
+
 https://{region}.mixpanel.com/import
 https://{region}.mixpanel.com/track
 
 2. Update the user profile
+
 https://{region}.mixpanel.com/engage
 
 ![image](https://github.com/user-attachments/assets/e46dab98-c556-492b-a42a-fb92f6169ef3)
